@@ -1,0 +1,57 @@
+plt.figure(figsize=(8, 5))
+
+sns.histplot(y, bins 30, kde=True)
+
+plt.title('Log (SalePrice) Distribution')
+
+plt.xlabel('Log (SalePrice)')
+
+plt.show()
+
+#%%
+
+#3.2 Missing values overview (top 10)
+
+missing_frac ending=False) train.isnull().mean().sort_values(asc
+
+top_missing missing_frac [missing_frac > 0].head (1 0)
+
+print("Top 10 features by missing fraction:\n", top_ missing)
+
+plt.figure(figsize=(8,5))
+
+top_missing.plot.bar()
+
+plt.title('Top 10 Features with Missing Values')
+
+plt.ylabel('Fraction missing')
+
+plt.show()
+
+#%%
+
+#3.3 Correlation with target
+
+numeric_feats er]).columns train.select_dtypes (include=[np.numb
+
+corr_matrix = pd.concat([train, y.rename('SalePric
+
+e')], axis=1) [numeric_feats.tolist() + ['SalePric e']].corr()
+
+top_corr = corr_matrix ['SalePrice'].abs().sort_value
+
+s(ascending=False).head (10)
+
+print("Top 10 numeric correlations with SalePric
+
+e:\n", top_corr)
+
+plt.figure(figsize=(10, 6))
+
+sns.heatmap(corr_matrix.loc[top_corr.index, top_cor
+
+r.index], annot=True, cmap='coolwarm', fmt='.2f')
+
+plt.title('Correlation Matrix of Top Features')
+
+plt.show()
